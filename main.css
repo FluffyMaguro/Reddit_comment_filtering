@@ -50,9 +50,17 @@ body {
 button {
     display: block;
     margin: auto;
-    margin-top: 10px;
+    margin-top: 8px;
+    width: 100px;
+    font-size: 18px;
+
 }
 
 a {
     color: #B3CCFF;
 }
+
+.gen0 {border-left: 5px solid blue;}
+.gen1 {border-left: 5px solid orange;}
+.gen2 {border-left: 5px solid green;}
+.gen3 {border-left: 5px solid yellow;}

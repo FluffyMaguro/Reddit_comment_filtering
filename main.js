@@ -58,7 +58,7 @@ getCommentsFromArray: function(arr, generation) {
   
   arr.forEach(function(item) {
     if (typeof item !== 'undefined') {
-      text += '<div class="rpost" style="margin-left:'+generation*40+'px"><div class="rauthor">'+item.data.author + ' (' +item.data.score + ')</div>';                                  
+      text += '<div class="rpost gen'+generation+'" style="margin-left:'+generation*40+'px"><div class="rauthor">'+item.data.author + ' 🠉' + item.data.score + '</div>';                                  
       
       
       let body = item.data.body;     
@@ -84,7 +84,6 @@ getCommentsFromArray: function(arr, generation) {
           }
         }
       }
-
       text += body + '</div>';
 
       // recursively go deeper
