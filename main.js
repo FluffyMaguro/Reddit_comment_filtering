@@ -1,8 +1,8 @@
 var app = {
+keywords: [],
 init: function() {
-  console.log('Running...');
-  document.querySelector('.reddit-dump').innerHTML = ''
-  document.getElementById("status").innerHTML = ''
+  document.querySelector('.reddit-dump').innerHTML = '';
+  document.getElementById("status").innerHTML = '';
   if (document.readyState != 'loading') {
     this.startApp();
   } else {
@@ -26,7 +26,6 @@ json: function (response) {
 //Main
 startApp: function() {
  //Get Feed
-  console.log('Fetching feed...');
   url = document.getElementById("urllink").innerHTML
   if (url != '') {
      fetch(url+'.json?limit=20')
@@ -49,7 +48,6 @@ addCommentstoHTML: function(text) {
 },
 
 getCommentsFromJSON: function(json) {
-  console.log('Finding comments...');
   var text = app.getCommentsFromArray(json[1].data.children,0);
   return text;
 },
@@ -98,20 +96,25 @@ getCommentsFromArray: function(arr, generation) {
 }
 };
 
-app.init()
-// document.getElementById("urllink").focus()
 
 // Highlights text with given strings
 function highlight() {
-  console.log('highlighting.....')
+  console.log('HL:' + app.keywords)
   let instance = new Mark(document.querySelector(".reddit-dump"));
-  instance.mark("warcraft", { //keywords
+  instance.unmark();
+  instance.mark(app.keywords, { //keywords
       "synonyms": {           // synonyms
-          "RTS": "warcraft",
-          "TA": "warcraft"
+          "WC3": "warcraft 3",
+          "SC": "starcraft",
+          "DOW": "dawn of war"
       },
-       "accuracy": "exactly", //don't include strings found inside other strings
-       "className": "highlighted"
+       "separateWordSearch": false, //search for whole things in mutli-word string
+       "className": "highlighted",
+       "ignorePunctuation": ":;.,-–—‒_(){}[]!?'\"+=".split(""),
+        "accuracy": {
+          "value": "exactly",
+          "limiters": ":;.,-–—‒_(){}[]!?'\"+=".split(""),
+    }
   });
 }
 
@@ -122,10 +125,12 @@ function show_hide() {
   for (i = 0; i < comments.length; i++) {
     // Check if it has highlighted childs
     let show = false;
-    if (comments[i] != null) {
-      for (j = 0; j < comments[i].childNodes.length; j++) {
-        if ((comments[i].childNodes[j].classList != null) && (comments[i].childNodes[j].classList.contains('highlighted'))) {
-          show = true
+    if (app.keywords.length == 0) {show = true} else {
+      if (comments[i] != null) {
+        for (j = 0; j < comments[i].childNodes.length; j++) {
+          if ((comments[i].childNodes[j].classList != null) && (comments[i].childNodes[j].classList.contains('highlighted'))) {
+            show = true
+          }
         }
       }
     }
@@ -137,3 +142,68 @@ function show_hide() {
     }
   }
 }
+
+// START
+
+// Init comment search
+app.init()
+// Add focus to search?
+// document.getElementById("urllink").focus()
+
+
+// Bind enter for input to add new keyword
+var keyInput = document.getElementById("newKey");
+keyInput.addEventListener("keyup", function(event) {
+    if (event.keyCode === 13) {
+        event.preventDefault();
+        document.getElementById("keyBtn").click();
+    }
+});
+
+function addKeyword(){
+  let text = keyInput.textContent;
+  keyInput.innerHTML = '';
+  if (text != null && text != '') {
+    
+    // Update visuals
+    let node = document.createElement("DIV");
+    node.classList.add("keyword_d");
+    let pnode = document.createElement("P");
+    let textnode = document.createTextNode(text);
+    pnode.appendChild(textnode);
+    node.appendChild(pnode);
+
+    let bnode = document.createElement("BUTTON");
+    bnode.innerHTML ='✕';
+    bnode.onclick = function() {removeKeyword(text, node)};
+    node.appendChild(bnode);
+    document.getElementById("currentKeys").appendChild(node);
+
+    // Add to app keywords & update
+    app.keywords.push(text);
+    highlight();
+    show_hide()
+  }
+}
+
+function removeKeyword(key, node) {
+  console.log('removing key '+ key)
+
+  // remove from app keywords array
+  const index = app.keywords.indexOf(key);
+  if (index > -1) {
+    app.keywords.splice(index, 1);
+  }
+  // Remove keyword element
+  node.remove()
+
+  // update comments
+  highlight();
+  show_hide()
+}
+
+//DEBUGG!!!!
+document.getElementById("newKey").innerHTML = 'heroes';
+addKeyword();
+document.getElementById("newKey").innerHTML = 'level';
+addKeyword();

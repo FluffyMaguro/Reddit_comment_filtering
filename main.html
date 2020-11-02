@@ -8,9 +8,14 @@
     <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
-    <div id="heading">Search and sort comments in a reddit thread</div>
+    <div id="heading">Search and filter comments in a reddit thread</div>
     <div contenteditable="True" id="urllink">https://old.reddit.com/r/FrostGiant/comments/jlr8a5/discussion_topic_202011_heroes/</div>
-    <button onclick="app.init()">Search</button>
+    <button id="searchb" onclick="app.init()">Search</button>
+    <div id="filterdiv">
+        <div id="newKey" contenteditable="True"></div>
+        <button id="keyBtn" onclick="addKeyword()">Add keyword</button>
+        <div id="currentKeys"></div>
+    </div>
     <div id="status"></div>
     <pre class="reddit-dump"><pre>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script>
