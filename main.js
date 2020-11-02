@@ -160,10 +160,13 @@ function eachFound(el) {
 }
 
 function hide_comments(){ // Hides comments before filtering
-  if (app.keywords.length == 0) {return}
   let comments = document.getElementsByClassName("rpost");
   for (i = 0; i < comments.length; i++) {
-      comments[i].style.opacity = ".3"
+      if (app.keywords.length == 0) {
+        comments[i].style.opacity = "1"
+      } else {
+        comments[i].style.opacity = ".3"
+      }
     }
 }
 
@@ -185,7 +188,7 @@ keyInput.addEventListener("keyup", function(event) {
     }
 });
 
-const keyword_activated_color = 'rgb(56,214,63)';
+const keyword_activated_color = 'rgb(56, 214, 63)';
 const keyword_deactivated_color = 'rgb(169, 169, 169)';
 
 function addKeyword(){
@@ -221,11 +224,17 @@ function addKeyword(){
 
 
 function keywordClicked(key, node) {
-  if (node.style.backgroundColor == keyword_deactivated_color) {
-    node.style.backgroundColor = keyword_activated_color
-  } else {
-    node.style.backgroundColor = keyword_deactivated_color
+  if (node.style.backgroundColor == keyword_deactivated_color) { //activate
+    node.style.backgroundColor = keyword_activated_color;
+    app.keywords.push(key);
+  } else { // deactivate
+    node.style.backgroundColor = keyword_deactivated_color;
+    let index = app.keywords.indexOf(key);
+    if (index > -1) {
+      app.keywords.splice(index, 1);
+    }
   }
+  highlight();
 
 }
 
