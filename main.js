@@ -123,7 +123,13 @@ function highlight() {
     }
   });
 
-  //!!! Here update keywords with numbers 
+  //Update keywords with numbers
+  let keywords = document.getElementsByClassName("keyword_d");
+    for (i = 0; i < keywords.length; i++) {
+      let text = keywords[i].firstChild.textContent;
+      let span = keywords[i].getElementsByTagName('span')[0];
+      if (app.key_dict[text] != null) {span.innerHTML = app.key_dict[text]}
+    }
 }
 
 // Save last found term. This function runs before 'each'
@@ -188,6 +194,9 @@ function addKeyword(){
     pnode.appendChild(textnode);
     node.appendChild(pnode);
 
+    let snode = document.createElement("SPAN");
+    node.appendChild(snode);
+
     let bnode = document.createElement("BUTTON");
     bnode.innerHTML ='✕';
     bnode.onclick = function() {removeKeyword(text, node)};
@@ -201,8 +210,6 @@ function addKeyword(){
 }
 
 function removeKeyword(key, node) {
-  console.log('removing key '+ key)
-
   // remove from app keywords array
   const index = app.keywords.indexOf(key);
   if (index > -1) {
