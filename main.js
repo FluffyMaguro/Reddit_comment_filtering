@@ -130,6 +130,7 @@ function highlight() {
       let span = keywords[i].getElementsByTagName('span')[0];
       if (app.key_dict[text] != null) {
         span.innerHTML = app.key_dict[text]
+      } else if (keywords[i].style.backgroundColor == keyword_deactivated_color) {
       } else {
         span.innerHTML = 0
       }
