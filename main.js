@@ -60,9 +60,17 @@ getCommentsFromArray: function(arr, generation) {
     if (typeof item !== 'undefined') {
       text += '<div class="rpost" style="margin-left:'+generation*40+'px"><div class="rauthor">'+item.data.author + ' (' +item.data.score + ')</div>';                                  
       
-      // replace links
+      
       let body = item.data.body;     
       if (body != null) {
+        // replace spaces
+        body = body.replaceAll('&amp;#x200B;','<br>');
+
+        // replace bold
+        let bold = /\*\*(.*?)\*\*/gm;
+        body = body.replace(bold, '<strong>$1</strong>');       
+
+        // replace links
         let elements = body.match(/\[.*?\)/g);
         if (elements != null && elements.length > 0){
           for (el of elements) {
@@ -76,6 +84,7 @@ getCommentsFromArray: function(arr, generation) {
           }
         }
       }
+
       text += body + '</div>';
 
       // recursively go deeper
