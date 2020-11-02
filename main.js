@@ -128,7 +128,11 @@ function highlight() {
     for (i = 0; i < keywords.length; i++) {
       let text = keywords[i].firstChild.textContent;
       let span = keywords[i].getElementsByTagName('span')[0];
-      if (app.key_dict[text] != null) {span.innerHTML = app.key_dict[text]}
+      if (app.key_dict[text] != null) {
+        span.innerHTML = app.key_dict[text]
+      } else {
+        span.innerHTML = 0
+      }
     }
 }
 
@@ -181,6 +185,9 @@ keyInput.addEventListener("keyup", function(event) {
     }
 });
 
+const keyword_activated_color = 'rgb(56,214,63)';
+const keyword_deactivated_color = 'rgb(169, 169, 169)';
+
 function addKeyword(){
   let text = keyInput.textContent;
   keyInput.innerHTML = '';
@@ -189,6 +196,9 @@ function addKeyword(){
     // Update visuals
     let node = document.createElement("DIV");
     node.classList.add("keyword_d");
+    node.onclick = function() {keywordClicked(text, node)};
+    node.style.backgroundColor = keyword_activated_color;
+
     let pnode = document.createElement("P");
     let textnode = document.createTextNode(text);
     pnode.appendChild(textnode);
@@ -207,6 +217,16 @@ function addKeyword(){
     app.keywords.push(text);
     highlight();
   }
+}
+
+
+function keywordClicked(key, node) {
+  if (node.style.backgroundColor == keyword_deactivated_color) {
+    node.style.backgroundColor = keyword_activated_color
+  } else {
+    node.style.backgroundColor = keyword_deactivated_color
+  }
+
 }
 
 function removeKeyword(key, node) {
