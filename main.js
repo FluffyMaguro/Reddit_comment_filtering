@@ -181,8 +181,6 @@ function eachFound(el) {
     }
 }
 
-
-
 function hide_comments(){ // Hides comments before filtering
   let comments = document.getElementsByClassName("rpost");
   for (i = 0; i < comments.length; i++) {
@@ -196,14 +194,8 @@ function hide_comments(){ // Hides comments before filtering
     }
 }
 
-
-// START
-
 // Init comment search
 app.init()
-// Add focus to search?
-// document.getElementById("urllink").focus()
-
 
 // Bind enter for input to add new keyword
 var keyInput = document.getElementById("newKey");
@@ -255,7 +247,6 @@ function createKeywordElement(text) {
   }
 }
 
-
 function keywordClicked(key, node) {
   if (node.style.backgroundColor == keyword_deactivated_color) { //activate
     node.style.backgroundColor = keyword_activated_color;
@@ -272,12 +263,11 @@ function keywordClicked(key, node) {
 
 function disableAll() { //disables all keyword buttons
   app.keywords = [];
-  highlight();
-
   let keywords = document.getElementsByClassName("keyword_d");
-    for (i = 0; i < keywords.length; i++) {
-      keywords[i].style.backgroundColor = keyword_deactivated_color;
-    }
+  for (i = 0; i < keywords.length; i++) {
+    keywords[i].style.backgroundColor = keyword_deactivated_color;
+  }
+  highlight();
 }
 
 function removeKeyword(key, node) {
