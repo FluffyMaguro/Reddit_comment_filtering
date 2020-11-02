@@ -60,6 +60,10 @@ a {
     color: #B3CCFF;
 }
 
+.highlighted {
+    background-color: #FFECA1;
+}
+
 .gen0 {border-left: 5px solid blue;}
 .gen1 {border-left: 5px solid orange;}
 .gen2 {border-left: 5px solid green;}

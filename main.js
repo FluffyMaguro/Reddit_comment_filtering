@@ -29,7 +29,7 @@ startApp: function() {
   console.log('Fetching feed...');
   url = document.getElementById("urllink").innerHTML
   if (url != '') {
-     fetch(url+'.json?limit=100')
+     fetch(url+'.json?limit=20')
       .then(app.status)
       .then(app.json)
       .then(app.getCommentsFromJSON)
@@ -44,6 +44,8 @@ startApp: function() {
 //Drop the text into the HTML
 addCommentstoHTML: function(text) {
   document.querySelector('.reddit-dump').innerHTML = text;
+  highlight();
+  show_hide()
 },
 
 getCommentsFromJSON: function(json) {
@@ -97,3 +99,41 @@ getCommentsFromArray: function(arr, generation) {
 };
 
 app.init()
+// document.getElementById("urllink").focus()
+
+// Highlights text with given strings
+function highlight() {
+  console.log('highlighting.....')
+  let instance = new Mark(document.querySelector(".reddit-dump"));
+  instance.mark("warcraft", { //keywords
+      "synonyms": {           // synonyms
+          "RTS": "warcraft",
+          "TA": "warcraft"
+      },
+       "accuracy": "exactly", //don't include strings found inside other strings
+       "className": "highlighted"
+  });
+}
+
+// Filters out comments without highlighted strings
+function show_hide() {
+  let comments = document.getElementsByClassName("rpost");
+
+  for (i = 0; i < comments.length; i++) {
+    // Check if it has highlighted childs
+    let show = false;
+    if (comments[i] != null) {
+      for (j = 0; j < comments[i].childNodes.length; j++) {
+        if ((comments[i].childNodes[j].classList != null) && (comments[i].childNodes[j].classList.contains('highlighted'))) {
+          show = true
+        }
+      }
+    }
+    // Mark
+    if (show) {
+      comments[i].style.opacity = "1";
+    } else {
+      comments[i].style.opacity = ".3";
+    }
+  }
+}
