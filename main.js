@@ -1,5 +1,6 @@
 var app = {
 keywords: [],
+lastFoundTerm: null,
 init: function() {
   document.querySelector('.reddit-dump').innerHTML = '';
   document.getElementById("status").innerHTML = '';
@@ -44,7 +45,6 @@ startApp: function() {
 addCommentstoHTML: function(text) {
   document.querySelector('.reddit-dump').innerHTML = text;
   highlight();
-  show_hide()
 },
 
 getCommentsFromJSON: function(json) {
@@ -101,47 +101,62 @@ getCommentsFromArray: function(arr, generation) {
 function highlight() {
   console.log('HL:' + app.keywords)
   let instance = new Mark(document.querySelector(".reddit-dump"));
+  app.key_dict = new Object();
+  app.last_parent = null;
   instance.unmark();
+  hide_comments();
   instance.mark(app.keywords, { //keywords
       "synonyms": {           // synonyms
           "WC3": "warcraft 3",
           "SC": "starcraft",
-          "DOW": "dawn of war"
+          "DOW": "dawn of war",
+          "HW": "halo wars"
       },
-       "separateWordSearch": false, //search for whole things in mutli-word string
+       "separateWordSearch": false, // Search for whole things in mutli-word string
        "className": "highlighted",
+       "filter": eachFilter,
+       "each":eachFound,
        "ignorePunctuation": ":;.,-–—‒_(){}[]!?'\"+=".split(""),
         "accuracy": {
           "value": "exactly",
           "limiters": ":;.,-–—‒_(){}[]!?'\"+=".split(""),
     }
   });
+
+  //!!! Here update keywords with numbers 
 }
 
-// Filters out comments without highlighted strings
-function show_hide() {
-  let comments = document.getElementsByClassName("rpost");
+// Save last found term. This function runs before 'each'
+function eachFilter(node, term, count, countthis) {
+  app.lastFoundTerm = term;
+  return true
+}
 
-  for (i = 0; i < comments.length; i++) {
-    // Check if it has highlighted childs
-    let show = false;
-    if (app.keywords.length == 0) {show = true} else {
-      if (comments[i] != null) {
-        for (j = 0; j < comments[i].childNodes.length; j++) {
-          if ((comments[i].childNodes[j].classList != null) && (comments[i].childNodes[j].classList.contains('highlighted'))) {
-            show = true
-          }
-        }
-      }
-    }
-    // Mark
-    if (show) {
-      comments[i].style.opacity = "1";
-    } else {
-      comments[i].style.opacity = ".3";
-    }
+function eachFound(el) {
+  let parent = el.parentElement; // Find parent comment block
+  while (!(parent.classList.contains('rpost'))) {
+      parent = parent.parentElement
   }
+
+  if (app.last_parent == parent) {return} // Skip if it's the same parent
+  app.last_parent = parent;
+  parent.style.opacity = '1';
+
+  if (app.key_dict[app.lastFoundTerm] == null) { //Update how many terms we found
+      app.key_dict[app.lastFoundTerm] = 1
+    } else {
+      app.key_dict[app.lastFoundTerm] += 1
+    }
 }
+
+function hide_comments(){ // Hides comments before filtering
+  if (app.keywords.length == 0) {return}
+  let comments = document.getElementsByClassName("rpost");
+  for (i = 0; i < comments.length; i++) {
+      comments[i].style.opacity = ".3"
+    }
+}
+
 
 // START
 
@@ -182,7 +197,6 @@ function addKeyword(){
     // Add to app keywords & update
     app.keywords.push(text);
     highlight();
-    show_hide()
   }
 }
 
@@ -199,7 +213,6 @@ function removeKeyword(key, node) {
 
   // update comments
   highlight();
-  show_hide()
 }
 
 //DEBUGG!!!!
