@@ -45,7 +45,7 @@ startApp: function() {
 //Drop the text into the HTML
 addCommentstoHTML: function(text) {
   document.querySelector('.reddit-dump').innerHTML = text;
-  if (true) { //!!!rts init
+  if (rts_init) { 
     app.keywords = data_rts
   }
   highlight();
@@ -118,6 +118,7 @@ function highlight() {
        "className": "highlighted",
        "filter": eachFilter,
        "each":eachFound,
+       "wildcards": "enabled",
        "ignorePunctuation": ":;.,-–—‒_(){}[]!?'\"+=".split(""),
         "accuracy": {
           "value": "exactly",
@@ -195,6 +196,7 @@ function hide_comments(){ // Hides comments before filtering
 }
 
 // Init comment search
+const rts_init = true; // search for various RTS games at start
 app.init()
 
 // Bind enter for input to add new keyword
@@ -287,7 +289,4 @@ function removeKeyword(key, node) {
   // update comments
   highlight();
 }
-
-//DEBUGG!!!!
-
 
