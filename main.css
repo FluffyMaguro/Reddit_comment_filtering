@@ -1,38 +1,97 @@
 body {
-    width: 100%;
-    max-width: 38em;
+    max-width: 900px;
     font-size: 1.5em;
     line-height: 1.5;
     margin: 2em auto;
     overflow-y: scroll;
-    font-family: Helvetica
+    font-family: Helvetica;
+    color: #CCC;
+    margin-top: 12px;
+    background: rgb(55,55,55);
+    background: linear-gradient(0deg, rgba(0,0,0,1) 0%, rgba(33,33,33,1) 100%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+#heading {
+    font-weight: bold;
+    font-size: 24px;
+    text-transform: uppercase;
+    margin: auto;
+    margin-bottom: 15px;
+    margin-top: 0px;
+    text-align: center;
+    font-family: Verdana
+}
+
+#heading span {
+    color: white;
+    display: inline-block;
+    position: relative;
+    left: 10px;
+    top: 10%;
+    -ms-transform: translateY(-90%);
+    transform: translateY(-90%);
+    color: #FFFFFF;
+}
+
+#urllink {  
+    background-color: #E6E6E6;
+    border: 2px solid white;
+    border-radius: 2px;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: 18px;
+    width: calc(100%-4);
+    color: black;
+}
+
+#searchb {
+    display: block;
+    margin: auto;
+    margin-top: 5px;
+    width: 100px;
+    height: 2em;
+    font-weight: bold;
+}
+
+#checkdiv {
+   text-align: right;   
+   font-size: 16px;
+   margin-top: -25px
 }
 
 #filterdiv {
-    margin-top: 10px
-}
-
-#keyBtn {
-    display: block;
-    margin: auto;
-    margin-top: 8px;
-    width: 100px;
-    margin-bottom: 15px
+    margin-top: 30px;
+    width: 100%
 }
 
 #filterdiv #newKey { 
     font-size: 16px; 
-    background-color: #8DABFF;
-    border: 2px solid black;
+    background-color: #E6E6E6;
+    border: 2px solid white;
     border-radius: 2px;
     height: 24px;
     overflow: hidden;
-    max-width: 400px;
-    margin: auto
+    max-width: 300px;
+    text-align: center;
+    margin: auto;
+    color: black;
+    padding: 0 5px 0 5px;
+}
+
+#filterdiv #keyBtn {
+    display: block;
+    margin: auto;
+    margin-top: 5px;
+    width: 100px;
+    margin-bottom: 15px;
+    height: 2em;
+    font-weight: bold;
 }
 
 .keyword_d {
-    border: 1px solid black;
+    border: 1px solid #ccc;
     background-color: #C6C6C6;
     border-radius: 2px;
     display: inline-block;
@@ -42,7 +101,7 @@ body {
 }
 
 .keyword_d:hover {
-    filter: brightness(1.15)
+    filter: brightness(1.1);
 }
 
 .keyword_d p {
@@ -50,13 +109,15 @@ body {
     margin-right: 10px;
     font-weight: bold;
     font-size: 14px;
-    vertical-align: middle
+    vertical-align: middle;
+    color: black;
 }
 
 .keyword_d span {
     font-size: 14px;
     font-weight: bold;
-    vertical-align: middle
+    vertical-align: middle;
+    color: black;
 }
 
 .keyword_d button {
@@ -73,28 +134,12 @@ body {
      outline: none
 }
 
-#heading {
-    font-weight: bold;
-    font-size: 24px;
-    text-transform: uppercase;
-    font-family: Verdana
-}
 
 .reddit-dump {
-    padding: 1rem;
+    width: 100%;
     font-size: 0.8em;
     line-height: 1;
     white-space: pre-wrap
-}
-
-#urllink {
-    background-color: #8DABFF;
-    border: 2px solid black;
-    border-radius: 2px;
-    padding-left: 5px;
-    padding-right: 5px;
-    font-size: 18px;
-    width: 100%
 }
 
 .rpost {
@@ -108,24 +153,12 @@ body {
 }
 
 .rauthor {
-    color: #7882FF;
+    color: #A0A7FF;
     margin-bottom: 5px;
+    font-size: 1rem;
     font-weight: bold
 }
 
-#searchb {
-    display: block;
-    margin: auto;
-    margin-top: 8px;
-    width: 100px
-}
-
-#checkdiv {
-   text-align: right;   
-   font-size: 16px;
-   margin-right: -20px;
-   margin-top: -25px
-}
 
 a {
     color: #B3CCFF
@@ -135,7 +168,8 @@ a {
     background-color: #FFECA1
 }
 
-.gen0 {border-left: 5px solid blue;}
-.gen1 {border-left: 5px solid orange;}
-.gen2 {border-left: 5px solid green;}
-.gen3 {border-left: 5px solid yellow;}
+.gen0 {border-left: 5px solid #33CCDE;}
+.gen1 {border-left: 5px solid #6AD137;} 
+.gen2 {border-left: 5px solid #FFAE2E;}
+.gen3 {border-left: 5px solid #FF29ED;}
+.gen4 {border-left: 5px solid #29EDFF;}

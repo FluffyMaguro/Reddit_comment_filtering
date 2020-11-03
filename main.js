@@ -236,7 +236,7 @@ keyInput.addEventListener("keyup", function(event) {
     }
 });
 
-const keyword_activated_color = 'rgb(56, 214, 63)';
+const keyword_activated_color = 'rgb(40, 230, 50)';
 const keyword_deactivated_color = 'rgb(169, 169, 169)';
 
 // INIT END
@@ -261,7 +261,7 @@ function createKeywordElement(text) {
     node.classList.add("keyword_d");
     node.onclick = function() {keywordClicked(text, node)};
     node.style.backgroundColor = keyword_activated_color;
-    node.title = "How many time the game was mentioned. Click to enable/disable filtering.";
+    node.title = "In how many comments the keyword was mentioned. Click to enable/disable filtering.";
 
     let pnode = document.createElement("P");
     let textnode = document.createTextNode(text);
@@ -269,6 +269,8 @@ function createKeywordElement(text) {
     node.appendChild(pnode);
 
     let snode = document.createElement("SPAN");
+    let ptextnode = document.createTextNode(0);
+    snode.appendChild(ptextnode);
     node.appendChild(snode);
 
     let bnode = document.createElement("BUTTON");
