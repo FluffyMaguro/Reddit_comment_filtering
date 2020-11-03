@@ -28,7 +28,7 @@ json: function (response) {
 //Main
 startApp: function() {
  //Get Feed
-  url = document.getElementById("urllink").innerHTML
+  url = document.getElementById("urllink").innerHTML;
   if (url != '') {
      fetch(url+'.json?limit=20')
       .then(app.status)
@@ -45,7 +45,7 @@ startApp: function() {
 //Drop the text into the HTML
 addCommentstoHTML: function(text) {
   document.querySelector('.reddit-dump').innerHTML = text;
-  if (rts_init) { 
+  if (document.getElementById("rts").checked) { 
     app.keywords = data_rts
   }
   highlight();
@@ -190,7 +190,7 @@ function eachFound(el) {
 
 function newUrl() {
   let param = "url=" + document.getElementById("urllink").textContent;
-  if (rts_init) {
+  if (document.getElementById("rts").checked) {
     param = param + '&rts'
   }
   document.location.search = param;
@@ -209,26 +209,25 @@ function hide_comments(){ // Hides comments before filtering
     }
 }
 
-// Init comment search
- // search for various RTS games at start
 
+// INIT 
 
-//parse url paramters
+// 1. Parse url paramters
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
 if (urlParams.has('url')) {
   document.getElementById("urllink").innerHTML = urlParams.get('url');
 }
 
-var rts_init = false;
+
 if (urlParams.has('rts')) {
-  rts_init = true;
+  document.getElementById("rts").checked = true;
 }
 
-// init app
+// 2. Init app
 app.init()
 
-// Bind enter for input to add new keyword
+// 3. Bind enter for input to add new keyword
 var keyInput = document.getElementById("newKey");
 keyInput.addEventListener("keyup", function(event) {
     if (event.keyCode === 13) {
@@ -239,6 +238,8 @@ keyInput.addEventListener("keyup", function(event) {
 
 const keyword_activated_color = 'rgb(56, 214, 63)';
 const keyword_deactivated_color = 'rgb(169, 169, 169)';
+
+// INIT END
 
 function addKeyword(){
   let text = keyInput.textContent;

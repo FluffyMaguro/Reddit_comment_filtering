@@ -8,9 +8,13 @@
     <link rel="stylesheet" type="text/css" href="main.css">
 </head>
 <body>
-    <div id="heading">Search and filter comments in a reddit thread</div>
+    <div id="heading"><img src="Fox Head.png" width="100px"><span>Search and filter comments in a reddit thread</span></div>
     <div contenteditable="True" id="urllink"></div>
     <button id="searchb" onclick="newUrl()">Search</button>
+    <div id="checkdiv">
+        <input type="checkbox" id="rts">
+        <label for="rts">Search for RTS</label>
+    </div>
     <div id="filterdiv">
         <div id="newKey" contenteditable="True"></div>
         <button id="keyBtn" onclick="addKeyword()">Add keyword</button>
