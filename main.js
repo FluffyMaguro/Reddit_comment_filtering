@@ -188,6 +188,14 @@ function eachFound(el) {
   }
 }
 
+function newUrl() {
+  let param = "url=" + document.getElementById("urllink").textContent;
+  if (rts_init) {
+    param = param + '&rts'
+  }
+  document.location.search = param;
+}
+
 function hide_comments(){ // Hides comments before filtering
   let comments = document.getElementsByClassName("rpost");
   for (i = 0; i < comments.length; i++) {
@@ -202,7 +210,22 @@ function hide_comments(){ // Hides comments before filtering
 }
 
 // Init comment search
-const rts_init = true; // search for various RTS games at start
+ // search for various RTS games at start
+
+
+//parse url paramters
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+if (urlParams.has('url')) {
+  document.getElementById("urllink").innerHTML = urlParams.get('url');
+}
+
+var rts_init = false;
+if (urlParams.has('rts')) {
+  rts_init = true;
+}
+
+// init app
 app.init()
 
 // Bind enter for input to add new keyword
