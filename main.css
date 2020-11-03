@@ -55,6 +55,7 @@ body {
     font-weight: bold;
     border: none;
     background: none;
+    cursor: pointer
 }
 
 .keyword_d button:focus { outline: none; }
