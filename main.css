@@ -5,7 +5,7 @@ body {
     line-height: 1.5;
     margin: 2em auto;
     overflow-y: scroll;
-    font-family: Helvetica;
+    font-family: Helvetica
 }
 
 #filterdiv {
@@ -17,7 +17,7 @@ body {
     margin: auto;
     margin-top: 8px;
     width: 100px;
-    margin-bottom: 15px;
+    margin-bottom: 15px
 }
 
 #filterdiv #newKey { 
@@ -28,7 +28,7 @@ body {
     height: 24px;
     overflow: hidden;
     max-width: 400px;
-    margin: auto;
+    margin: auto
 }
 
 .keyword_d {
@@ -42,7 +42,7 @@ body {
 }
 
 .keyword_d:hover {
-    filter: brightness(1.15);
+    filter: brightness(1.15)
 }
 
 .keyword_d p {
@@ -50,13 +50,13 @@ body {
     margin-right: 10px;
     font-weight: bold;
     font-size: 14px;
-    vertical-align: middle;
+    vertical-align: middle
 }
 
 .keyword_d span {
     font-size: 14px;
     font-weight: bold;
-    vertical-align: middle;
+    vertical-align: middle
 }
 
 .keyword_d button {
@@ -66,33 +66,35 @@ body {
     background: none;
     vertical-align: middle;
     margin-top: -3px;
-    cursor: pointer;
+    cursor: pointer
 }
 
-.keyword_d button:focus { outline: none; }
+.keyword_d button:focus { 
+     outline: none
+}
 
 #heading {
     font-weight: bold;
     font-size: 24px;
     text-transform: uppercase;
-    font-family: Verdana;
+    font-family: Verdana
 }
 
 .reddit-dump {
     padding: 1rem;
     font-size: 0.8em;
     line-height: 1;
-    white-space: pre-wrap;
+    white-space: pre-wrap
 }
 
 #urllink {
     background-color: #8DABFF;
     border: 2px solid black;
     border-radius: 2px;
-    padding-left: 10px;
-    padding-right: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
     font-size: 18px;
-    width: 100%;
+    width: 100%
 }
 
 .rpost {
@@ -102,7 +104,7 @@ body {
     border-radius: 5px;
     background-origin: 2px;
     margin-top: 10px;
-    padding: 10px;
+    padding: 10px
 }
 
 .rauthor {
@@ -115,22 +117,22 @@ body {
     display: block;
     margin: auto;
     margin-top: 8px;
-    width: 100px;
+    width: 100px
 }
 
 #checkdiv {
    text-align: right;   
    font-size: 16px;
    margin-right: -20px;
-   margin-top: -25px;
+   margin-top: -25px
 }
 
 a {
-    color: #B3CCFF;
+    color: #B3CCFF
 }
 
 .highlighted {
-    background-color: #FFECA1;
+    background-color: #FFECA1
 }
 
 .gen0 {border-left: 5px solid blue;}
