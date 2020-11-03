@@ -106,7 +106,7 @@ function highlight() {
   
   let instance = new Mark(document.querySelector(".reddit-dump"));
   app.key_dict = new Object();
-  app.last_parent = null;
+  app.last_found = {parent: null, term: null, updated_term: null};
   instance.unmark();
   hide_comments();
 
@@ -158,9 +158,9 @@ function highlight() {
   }
 }
 
-// Save last found term. This function runs before 'each'
+// Save last found term
 function eachFilter(node, term, count, countthis) {
-  app.lastFoundTerm = term;
+  app.last_found.term = term;
   return true
 }
 
@@ -170,16 +170,22 @@ function eachFound(el) {
       parent = parent.parentElement
   }
 
-  if (app.last_parent == parent) {return} // Skip if it's the same parent
-  app.last_parent = parent;
-  // parent.style.display = 'block';
-  parent.style.opacity = "1"
-
-  if (app.key_dict[app.lastFoundTerm] == null) { //Update how many terms we found
-      app.key_dict[app.lastFoundTerm] = 1
+  // Check if we found either new term, or the same one in another comment
+  if ((app.last_found.parent != parent) || (app.last_found.updated_term != app.last_found.term)) {
+    app.last_found.updated_term = app.last_found.term;
+    if (app.key_dict[app.last_found.term] == null) {
+      app.key_dict[app.last_found.term] = 1
     } else {
-      app.key_dict[app.lastFoundTerm] += 1
+      app.key_dict[app.last_found.term] += 1
     }
+  }
+
+  // Update comment visibility
+  if (app.last_found.parent != parent) {
+    app.last_found.parent = parent;
+    // parent.style.display = 'block';
+    parent.style.opacity = "1";
+  }
 }
 
 function hide_comments(){ // Hides comments before filtering
@@ -231,6 +237,7 @@ function createKeywordElement(text) {
     node.classList.add("keyword_d");
     node.onclick = function() {keywordClicked(text, node)};
     node.style.backgroundColor = keyword_activated_color;
+    node.title = "How many time the game was mentioned. Click to enable/disable filtering.";
 
     let pnode = document.createElement("P");
     let textnode = document.createTextNode(text);
