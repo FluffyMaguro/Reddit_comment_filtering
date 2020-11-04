@@ -1,6 +1,6 @@
 const data_synonyms = {
      "WarCraft":"WC3",
-     "StarCraft": "BW|Broor War|SC|SC2",
+     "StarCraft": "BW|Brood War|SC|SC2",
      "Dawn of War":"DOW|Warhammer 40,000|w40k",
      "Supreme Commander": "SupCom|Forged Alliance",
      "Halo Wars":"HW|HW2",
