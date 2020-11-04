@@ -164,6 +164,12 @@ body {
     font-weight: bold
 }
 
+.shBtn {
+    float: right;
+    color: #A1A1A1;
+    font-style: italic;
+}
+
 a {
     color: #B3CCFF
 }

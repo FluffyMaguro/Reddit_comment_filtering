@@ -66,7 +66,7 @@ getCommentsFromArray: function(arr, generation) {
       let permalink = item.data.permalink;
       permalink = 'https://www.reddit.com'+permalink;
 
-      text += '<div class="rpost gen'+generation+'" onClick="commentClicked(this)" style="margin-left:'+generation*40+'px"><a target="_blank" href="'+ permalink +'"><div class="rauthor">'+item.data.author + ' 🠉' + item.data.score + '</div></a></br>';
+      text += '<div class="rpost gen'+generation+'" style="margin-left:'+generation*40+'px"><a target="_blank" href="'+ permalink +'"><div class="rauthor">'+item.data.author + ' 🠉' + item.data.score + '</div></a><span class="shBtn" onClick="commentClicked(this)">show</span></br>';
       
       let body = item.data.body;     
       if (body != null) {
@@ -326,18 +326,19 @@ function removeKeyword(key, node) {
 }
 
 function commentClicked(el) {
-    show_hide_comment(el, el.style.opacity == '0.5')
+    show_hide_comment(el.parentElement, el.parentElement.style.opacity == '0.5')
 }
 
 function show_hide_comment(el, show) {
+    let button = el.querySelector('span');
+
     if (show) {
-      
-      el.style.maxHeight = '100000px';
+      button.textContent = 'hide';
+      el.style.height = 'auto';
       el.style.opacity = "1"
     } else {
-      
-      el.style.maxHeight = '10px';
+      button.textContent = 'show';
+      el.style.height = '10px';
       el.style.opacity = ".5"
     }                          
-
 }
