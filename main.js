@@ -34,7 +34,7 @@ startApp: function() {
       .then(app.status)
       .then(app.json)
       .then(app.getCommentsFromJSON)
-        .then(app.addCommentstoHTML)
+      .then(app.addCommentstoHTML)
       .catch(function(error) {
       console.log('request failed', error.message)
       document.getElementById("status").innerHTML = '<span style="color: red">Request failed!</span>'
@@ -48,9 +48,17 @@ addCommentstoHTML: function(text) {
   if (document.getElementById("rts").checked) { 
     app.keywords = [...data_rts]
   }
-  highlight();
-  disableAll()
+  document.getElementById("loader-outer").style.display = 'block';
+  setTimeout(app.highlight_and_disable,50)
 },
+
+
+highlight_and_disable: function() {
+  highlight();
+  disableAll();
+  document.getElementById("loader-outer").style.display = 'none'
+},
+
 
 getCommentsFromJSON: function(json) {
   var text = app.getCommentsFromArray(json[1].data.children,0);
@@ -106,7 +114,6 @@ getCommentsFromArray: function(arr, generation) {
 
 // Highlights text with given strings
 function highlight() {
-  
   let instance = new Mark(document.querySelector(".reddit-dump"));
   app.key_dict = new Object();
   app.last_found = {parent: null, term: null, updated_term: null};
