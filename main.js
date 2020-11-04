@@ -194,7 +194,7 @@ function eachFound(el) {
 function newUrl() {
   let param = "url=" + document.getElementById("urllink").textContent;
   if (document.getElementById("rts").checked) {
-    param = param + '&rts'
+    param = param + '&rts='
   }
   document.location.search = param;
 }
