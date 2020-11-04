@@ -63,7 +63,10 @@ getCommentsFromArray: function(arr, generation) {
   
   arr.forEach(function(item) {
     if (typeof item !== 'undefined') {
-      text += '<div class="rpost gen'+generation+'" style="margin-left:'+generation*40+'px"><div class="rauthor">'+item.data.author + ' 🠉' + item.data.score + '</div>';                                  
+      let permalink = item.data.permalink;
+      permalink = 'https://www.reddit.com'+permalink;
+
+      text += '<div class="rpost gen'+generation+'" style="margin-left:'+generation*40+'px"><a target="_blank" href="'+ permalink +'"><div class="rauthor">'+item.data.author + ' 🠉' + item.data.score + '</div></a>';                                  
       
       let body = item.data.body;     
       if (body != null) {
@@ -119,10 +122,10 @@ function highlight() {
        "filter": eachFilter,
        "each":eachFound,
        "wildcards": "enabled",
-       "ignorePunctuation": ":;.,-–—‒_(){}[]!?'\"+=".split(""),
+       "ignorePunctuation": ":;.,-–—‒_(){}[]/!?'\"+=".split(""),
         "accuracy": {
           "value": "exactly",
-          "limiters": ":;.,-–—‒_(){}[]!?'\"+=".split(""),
+          "limiters": ":;.,-–—‒_(){}[]/!?'\"+=".split(""),
     }
   });
 
@@ -285,9 +288,11 @@ function createKeywordElement(text) {
 function keywordClicked(key, node) {
   if (node.style.backgroundColor == keyword_deactivated_color) { //activate
     node.style.backgroundColor = keyword_activated_color;
+    node.style.borderColor = '#098100';
     app.keywords.push(key);
   } else { // deactivate
     node.style.backgroundColor = keyword_deactivated_color;
+    node.style.borderColor = '#ccc';
     let index = app.keywords.indexOf(key);
     if (index > -1) {
       app.keywords.splice(index, 1);

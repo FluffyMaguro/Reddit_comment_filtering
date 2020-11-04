@@ -43,7 +43,7 @@ body {
     padding-right: 5px;
     font-size: 18px;
     width: calc(100%-4);
-    color: black;
+    color: #4F4F4F;
 }
 
 #searchb {
@@ -101,7 +101,7 @@ body {
 }
 
 .keyword_d:hover {
-    filter: brightness(1.1);
+    filter: brightness(1.2);
 }
 
 .keyword_d p {
