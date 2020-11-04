@@ -6,9 +6,9 @@ init: function() {
   document.querySelector('.reddit-dump').innerHTML = '';
   document.getElementById("status").innerHTML = '';
   if (document.readyState != 'loading') {
-    this.startApp();
+    this.preStart();
   } else {
-    document.addEventListener('DOMContentLoaded', this.startApp);
+    document.addEventListener('DOMContentLoaded', this.preStart);
   }
 },
 
@@ -25,12 +25,23 @@ json: function (response) {
   return response.json()
 },
 
+preStart: function() {
+  if (url = document.getElementById("urllink").innerHTML == '') {
+     this.startApp()
+  } else {
+    document.getElementById("loader-outer").style.display = 'block';
+    console.log('starting app soon');
+    setTimeout(app.startApp,50)
+  }                                                              
+},
+
 //Main
 startApp: function() {
  //Get Feed
+ console.log('starting app');
   url = document.getElementById("urllink").innerHTML;
   if (url != '') {
-     fetch(url+'.json?limit=3000')
+     fetch(url+'.json?limit=30000')
       .then(app.status)
       .then(app.json)
       .then(app.getCommentsFromJSON)
@@ -48,6 +59,7 @@ addCommentstoHTML: function(text) {
   if (document.getElementById("rts").checked) { 
     app.keywords = [...data_rts]
   }
+  document.getElementById("loader-outer").querySelector('span').textContent = 'filtering';
   document.getElementById("loader-outer").style.display = 'block';
   setTimeout(app.highlight_and_disable,50)
 },
@@ -268,6 +280,7 @@ function createKeywordElement(text) {
     node.classList.add("keyword_d");
     node.onclick = function() {keywordClicked(text, node)};
     node.style.backgroundColor = keyword_activated_color;
+    node.style.borderColor = '#098100';
     node.title = "In how many comments the keyword was mentioned. Click to enable/disable filtering.";
 
     let pnode = document.createElement("P");
