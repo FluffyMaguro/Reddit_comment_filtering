@@ -59,7 +59,7 @@ body {
 #heading {
     font-weight: bold;
     font-size: 24px;
-    text-transform: uppercase;
+    
     margin: auto;
     margin-bottom: 15px;
     margin-top: 0px;
@@ -71,11 +71,17 @@ body {
     color: white;
     display: inline-block;
     position: relative;
+    text-transform: uppercase;
     left: 10px;
-    top: 10%;
-    -ms-transform: translateY(-90%);
-    transform: translateY(-90%);
+    top: -42px;
     color: #FFFFFF;
+}
+
+#heading div {
+    font-size: 14px;  
+    position: relative;
+    left: -22px;   
+    margin-top: -44px; 
 }
 
 #urllink {  
@@ -87,6 +93,7 @@ body {
     font-size: 18px;
     width: calc(100%-4);
     color: #4F4F4F;
+    margin-top: 30px;
 }
 
 #searchb {

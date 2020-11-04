@@ -30,7 +30,6 @@ preStart: function() {
      this.startApp()
   } else {
     document.getElementById("loader-outer").style.display = 'block';
-    console.log('starting app soon');
     setTimeout(app.startApp,50)
   }                                                              
 },
@@ -38,7 +37,6 @@ preStart: function() {
 //Main
 startApp: function() {
  //Get Feed
- console.log('starting app');
   url = document.getElementById("urllink").innerHTML;
   if (url != '') {
      fetch(url+'.json?limit=30000')
