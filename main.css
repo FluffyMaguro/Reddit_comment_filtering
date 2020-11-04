@@ -148,8 +148,10 @@ body {
     border: 1px solid black;
     border-radius: 5px;
     background-origin: 2px;
-    margin-top: 10px;
-    padding: 10px
+    margin-top: 3px;
+    transition: opacity 0.5s;
+    overflow: hidden;
+    padding: 8px;
 }
 
 .rauthor {
@@ -161,7 +163,6 @@ body {
     text-decoration: underline;
     font-weight: bold
 }
-
 
 a {
     color: #B3CCFF

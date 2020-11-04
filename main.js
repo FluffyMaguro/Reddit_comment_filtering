@@ -66,7 +66,7 @@ getCommentsFromArray: function(arr, generation) {
       let permalink = item.data.permalink;
       permalink = 'https://www.reddit.com'+permalink;
 
-      text += '<div class="rpost gen'+generation+'" style="margin-left:'+generation*40+'px"><a target="_blank" href="'+ permalink +'"><div class="rauthor">'+item.data.author + ' 🠉' + item.data.score + '</div></a></br>';
+      text += '<div class="rpost gen'+generation+'" onClick="commentClicked(this)" style="margin-left:'+generation*40+'px"><a target="_blank" href="'+ permalink +'"><div class="rauthor">'+item.data.author + ' 🠉' + item.data.score + '</div></a></br>';
       
       let body = item.data.body;     
       if (body != null) {
@@ -186,8 +186,7 @@ function eachFound(el) {
   // Update comment visibility
   if (app.last_found.parent != parent) {
     app.last_found.parent = parent;
-    // parent.style.display = 'block';
-    parent.style.opacity = "1";
+    show_hide_comment(parent, true)
   }
 }
 
@@ -203,11 +202,9 @@ function hide_comments(){ // Hides comments before filtering
   let comments = document.getElementsByClassName("rpost");
   for (i = 0; i < comments.length; i++) {
       if (app.keywords.length == 0) {
-        // comments[i].style.display = "block";
-        comments[i].style.opacity = "1"
+        show_hide_comment(comments[i], true)
       } else {
-        // comments[i].style.display = "none";
-        comments[i].style.opacity = ".5"
+        show_hide_comment(comments[i], false)
       }
     }
 }
@@ -328,3 +325,19 @@ function removeKeyword(key, node) {
   highlight();
 }
 
+function commentClicked(el) {
+    show_hide_comment(el, el.style.opacity == '0.5')
+}
+
+function show_hide_comment(el, show) {
+    if (show) {
+      
+      el.style.maxHeight = '100000px';
+      el.style.opacity = "1"
+    } else {
+      
+      el.style.maxHeight = '10px';
+      el.style.opacity = ".5"
+    }                          
+
+}
