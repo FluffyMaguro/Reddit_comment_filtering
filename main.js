@@ -66,7 +66,7 @@ getCommentsFromArray: function(arr, generation) {
       let permalink = item.data.permalink;
       permalink = 'https://www.reddit.com'+permalink;
 
-      text += '<div class="rpost gen'+generation+'" style="margin-left:'+generation*40+'px"><a target="_blank" href="'+ permalink +'"><div class="rauthor">'+item.data.author + ' 🠉' + item.data.score + '</div></a>';                                  
+      text += '<div class="rpost gen'+generation+'" style="margin-left:'+generation*40+'px"><a target="_blank" href="'+ permalink +'"><div class="rauthor">'+item.data.author + ' 🠉' + item.data.score + '</div></a></br>';
       
       let body = item.data.body;     
       if (body != null) {
