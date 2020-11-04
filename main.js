@@ -46,7 +46,7 @@ startApp: function() {
 addCommentstoHTML: function(text) {
   document.querySelector('.reddit-dump').innerHTML = text;
   if (document.getElementById("rts").checked) { 
-    app.keywords = data_rts
+    app.keywords = [...data_rts]
   }
   highlight();
   disableAll()
@@ -303,9 +303,23 @@ function disableAll() { //disables all keyword buttons
   let keywords = document.getElementsByClassName("keyword_d");
   for (i = 0; i < keywords.length; i++) {
     keywords[i].style.backgroundColor = keyword_deactivated_color;
+    keywords[i].style.borderColor = '#ccc';
   }
   highlight();
 }
+
+
+function enableAll() { //enables all keyword buttons
+  app.keywords = [...app.shown_keywords];
+  let keywords = document.getElementsByClassName("keyword_d");
+  for (i = 0; i < keywords.length; i++) {
+    keywords[i].style.backgroundColor = keyword_activated_color;
+    keywords[i].style.borderColor = '#098100';
+  }
+  highlight();
+}
+
+
 
 function removeKeyword(key, node) {
   // remove from app keywords array

@@ -20,7 +20,11 @@
     </div>
     <div id="filterdiv">
         <div id="newKey" contenteditable="True"></div>
-        <button id="keyBtn" onclick="addKeyword()">Add keyword</button>
+        <div class="buttondiv">
+            <button id="keyBtn" class="keyBtn" onclick="addKeyword()">Add keyword</button>
+            <button class="keyBtn" onclick="enableAll()">Enable All</button>
+            <button class="keyBtn" onclick="disableAll()">Disable All</button>            
+        </div>
         <div id="currentKeys"></div>
     </div>
     <div id="status"></div>

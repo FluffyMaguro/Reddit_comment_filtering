@@ -73,21 +73,25 @@ body {
     border-radius: 2px;
     height: 24px;
     overflow: hidden;
-    max-width: 300px;
+    max-width: 298px;
     text-align: center;
     margin: auto;
     color: black;
     padding: 0 5px 0 5px;
 }
 
-#filterdiv #keyBtn {
-    display: block;
-    margin: auto;
+#filterdiv .buttondiv {
+    text-align: center;
+}
+
+#filterdiv .keyBtn {
+    display: inline-block;
     margin-top: 5px;
     width: 100px;
     margin-bottom: 15px;
     height: 2em;
     font-weight: bold;
+
 }
 
 .keyword_d {
