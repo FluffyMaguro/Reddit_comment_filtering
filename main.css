@@ -91,7 +91,10 @@ body {
     margin-bottom: 15px;
     height: 2em;
     font-weight: bold;
+}
 
+#currentKeys {
+    line-height: 1.4em;
 }
 
 .keyword_d {
@@ -100,7 +103,8 @@ body {
     border-radius: 2px;
     display: inline-block;
     padding: 0px 5px 0px 10px;
-    margin: 3px;
+    margin: 0px 3px 0px 3px;
+    max-height: 24px;
     cursor: pointer
 }
 
@@ -113,15 +117,17 @@ body {
     margin-right: 10px;
     font-weight: bold;
     font-size: 14px;
-    vertical-align: middle;
+    vertical-align: top;
     color: black;
+    line-height: 1.9em;
 }
 
 .keyword_d span {
     font-size: 14px;
     font-weight: bold;
-    vertical-align: middle;
+    vertical-align: top;
     color: black;
+    line-height: 1.9em;
 }
 
 .keyword_d button {
@@ -129,15 +135,14 @@ body {
     font-weight: bold;
     border: none;
     background: none;
-    vertical-align: middle;
-    margin-top: -3px;
+    vertical-align: top;
+    line-height: 1.9em;
     cursor: pointer
 }
 
 .keyword_d button:focus { 
      outline: none
 }
-
 
 .reddit-dump {
     width: 100%;
@@ -152,15 +157,15 @@ body {
     border: 1px solid black;
     border-radius: 5px;
     background-origin: 2px;
-    margin-top: 3px;
+    margin-top: 1px;
     transition: opacity 0.5s;
     overflow: hidden;
     padding: 8px;
+    padding-top: 3px;
 }
 
 .rauthor {
     color: #A0A7FF;
-    margin-bottom: 5px;
     font-size: 1rem;
     display: inline-block;
     margin-bottom: 5px;

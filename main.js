@@ -30,7 +30,7 @@ startApp: function() {
  //Get Feed
   url = document.getElementById("urllink").innerHTML;
   if (url != '') {
-     fetch(url+'.json?limit=20')
+     fetch(url+'.json?limit=3000')
       .then(app.status)
       .then(app.json)
       .then(app.getCommentsFromJSON)
@@ -122,10 +122,10 @@ function highlight() {
        "filter": eachFilter,
        "each":eachFound,
        "wildcards": "enabled",
-       "ignorePunctuation": ":;.,-–—‒_(){}[]/!?'\"+=".split(""),
+       "ignorePunctuation": ":;.,-–—‒_(){}[]/!?>*1234'\"+=".split(""),
         "accuracy": {
           "value": "exactly",
-          "limiters": ":;.,-–—‒_(){}[]/!?'\"+=".split(""),
+          "limiters": ":;.,-–—‒_(){}[]/!?>*1234'\"+=".split(""),
     }
   });
 
@@ -352,7 +352,7 @@ function show_hide_comment(el, show) {
       el.style.opacity = "1"
     } else {
       button.textContent = 'show';
-      el.style.height = '10px';
+      el.style.height = '8px';
       el.style.opacity = ".5"
     }                          
 }
