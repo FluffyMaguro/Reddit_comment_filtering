@@ -13,7 +13,7 @@ const data_synonyms = {
      "Universe at War":"UAW",
      "Total Annihilation": "TA",
      "League of Legends": "lol",
-     'Heroes from the Storm':'hots',
+     'Heroes of the Storm':'hots|Heroes from the Storm',
      'Magic: The Gathering':'mtg',
      'Dungeons & Dragons':  'Dungeons and Dragons',
      'Total War': 'totalwar'
@@ -153,7 +153,7 @@ const data_rts = [
       'Halo Wars',
       'Hanjuku Eiyuu - Aa Sekai Yo Hanjuku Nare',
       'Hearts of Iron',
-      'Heroes from the Storm',
+      'Heroes of the Storm',
       'Hegemony Gold: Wars of Ancient Greece',
       'Hegemony III: Clash of the Ancients',
       'Hegemony Rome: The Rise of Caesar',
