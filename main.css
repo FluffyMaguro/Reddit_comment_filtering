@@ -141,6 +141,8 @@ body {
     margin-bottom: 15px;
     height: 2em;
     font-weight: bold;
+    white-space: nowrap;
+    color: black;
 }
 
 #currentKeys {
